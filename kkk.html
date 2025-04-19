@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find the Gift</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .room-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: url("https://www.w3schools.com/w3images/livingroom.jpg")
+          no-repeat center center;
+        background-size: cover;
+      }
+
+      .shinchans-message {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px 30px;
+        color: white;
+        font-size: 1.8em;
+        border-radius: 12px;
+        z-index: 10;
+        text-align: center;
+      }
+
+      .gift {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+        z-index: 5;
+      }
+
+      .real-gift {
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/1/1d/Gift_Box_Icon.png");
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .next-btn {
+        display: none;
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 15px 30px;
+        font-size: 1.2em;
+        border: none;
+        background-color: #f50057;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        z-index: 15;
+      }
+
+      .next-btn:hover {
+        background-color: #ff4081;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="room-container" id="room">
+      <div class="shinchans-message">
+        <h2>Find the Real Gift, Pranith!</h2>
+        <p>Find Your Invisible gift👆</p>
+      </div>
+      <div
+        class="gift real-gift"
+        onclick="window.location.href='surprise.html';"></div>
+      <button class="next-btn" id="nextBtn" onclick="goToSurprise()">
+        Surprise!
+      </button>
+    </div>
+
+    <script>
+      function goToSurprise() {
+        window.location.href = "surprise.html";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shinchan's Birthday Quest - Scene 1</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Luckiest+Guy&display=swap"
+      rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Comic Neue", cursive;
+        background: linear-gradient(135deg, #fceabb, #f8b500);
+        overflow-x: hidden;
+        margin: 0;
+        position: relative;
+        background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+        background-repeat: repeat;
+      }
+      .banner {
+        width: 100%;
+        height: 120px;
+        background: repeating-linear-gradient(
+          90deg,
+          #ff4081,
+          #f50057 20px,
+          #ffca28 40px
+        );
+        background-size: contain;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      .container {
+        text-align: center;
+        padding: 160px 20px 60px;
+        position: relative;
+        z-index: 2;
+      }
+      h1 {
+        font-family: "Luckiest Guy", cursive;
+        font-size: 3.5em;
+        color: #6a1b9a;
+        text-shadow: 4px 4px #ffffff;
+      }
+      p {
+        font-size: 1.6em;
+        color: #4e342e;
+      }
+      .character-img {
+        width: 240px;
+        background-color: transparent;
+        animation: float 3s infinite ease-in-out;
+        position: relative;
+        z-index: 10;
+      }
+      .next-btn {
+        margin-top: 30px;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        background-color: #f50057;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .next-btn:hover {
+        background-color: #ff4081;
+      }
+      .quiz {
+        margin-top: 40px;
+        background: #fff8e1;
+        padding: 20px;
+        border-radius: 12px;
+        display: inline-block;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .quiz p {
+        font-size: 1.3em;
+        color: #4e342e;
+      }
+      .quiz button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 1em;
+        margin: 5px;
+        background-color: #ffca28;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .quiz button:hover {
+        background-color: #ffd54f;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 1.4em;
+        color: #2e7d32;
+        position: relative;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+      .emoji-float {
+        position: fixed;
+        font-size: 2rem;
+        animation: floatEmoji 8s linear infinite;
+        opacity: 0.8;
+        z-index: 0;
+      }
+      @keyframes floatEmoji {
+        0% {
+          transform: translateY(100vh) translateX(0);
+        }
+        100% {
+          transform: translateY(-120vh) translateX(20px);
+        }
+      }
+      .burst-star {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        animation: burst 1s ease-out forwards;
+        pointer-events: none;
+      }
+      @keyframes burst {
+        0% {
+          opacity: 1;
+          transform: scale(0.5) translate(-50%, -50%);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(2) translate(-50%, -50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+<script>
+  function startAdventure() {
+    window.location.href = "scene2.html"; // 👈 change this to your actual next page if needed
+  }
+</script>
+   
+ <div class="banner"></div>
+
+    <!-- Floating emojis -->
+    <script>
+      const emojis = ["🎈", "🎉", "🎂", "🎊", "🥳", "🎁"];
+      for (let i = 0; i < 30; i++) {
+        const emoji = document.createElement("div");
+        emoji.className = "emoji-float";
+        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        emoji.style.left = Math.random() * 100 + "vw";
+        emoji.style.top = Math.random() * 100 + "vh";
+        emoji.style.animationDuration = 5 + Math.random() * 5 + "s";
+        document.body.appendChild(emoji);
+      }
+    </script>
+
+    <div class="container">
+      <h1>🎉 Happy 9th Birthday Pranith! 🎉</h1>
+      <img
+        src="https://media-hosting.imagekit.io/f49e0fea0136492b/shinchan.png?Expires=1839665213&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cmqw4CzMX-iDxLvkPaze~6WS0NArEEHYqu7930Z~uDwHGKoEg8o~5OkrVU2zYopUVCOTZTej2vIRYnO9T6aIXrUan4tohEfRCCYrqRjuc8Pi2WM~owa3vBsrP4i~YCIQfYhp8EwKAl~9Shh4xivl41SRFCpf5ViCnclGH-Jwx3Ss5mIwB7j02vi-bW6GqKBXWBEAiiD5B44Ec7Dq8xi8VvGbsWamRmu3MUPhH5FOztcIo7kPSJ9hQhCO5QxAvBYS9lx2j1UvDuZqS~EyNFfsfvqv2t-kOAzDOuGn4A-EEKq8surSmwByKa00UPJRf1sZkyXzo2iPdkqMBWsibi3f6Q__"
+        alt="Shinchan"
+        class="character-img" />
+      <p>Hey Pranith! It's me, Shinchan! 😜</p>
+      <p>
+        I heard it's your special day and I've got something super fun for
+        you...
+      </p>
+      <p>
+        A TREASURE HUNT 🎁! But not just any treasure hunt... this one is full
+        of your favorite characters!
+      </p>
+      <p>But first... can you answer my silly question? 😆</p>
+
+      <div class="quiz">
+        <p>What does Shinchan love to eat the most?</p>
+        <button onclick="checkAnswer('wrong')">Pizza 🍕</button>
+        <button onclick="checkAnswer('right')">
+          Choco Chips
+          <img
+            src="https://media-hosting.imagekit.io/71da86bf81184a1a/download.jpg?Expires=1839667177&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=TNBUIrytRlUYVGGgOCK5NBSSnDMtGhCVnyPqzsKsp3edHaGH73TUKGbDyh4ygj0kAJtCwt5DxLE3E4zvxSCa5yzeFbipMYOnKYSb6BsXP02KQY16VgpbtTMGc2-8GNA44d3c-MOXty9B8Np9~kNMIo6iBUJ0O1-a19EmZk48328c6NE~TeWM2OLElz99fQw6kmKq5ViOSpe7DaBOjdMNmttyRalgfP27PCPNnSFT1r9zzFyodQ15PaVR3QWFX2TTe7FjyXqHIJXl-~3z1UURjL-uD3yQ1M93uVxmCwZDzka2DGOZAD99n7bVw26aBqg8B5f-cOqmfmw5H252Vwa5BQ__"
+            alt="Choco Chips"
+            style="height: 24px; vertical-align: middle; margin-left: 5px" />
+        </button>
+        <button onclick="checkAnswer('wrong')">Carrots 🥕</button>
+        <div id="result"></div>
+      </div>
+
+      <button
+        id="nextBtn"
+        class="next-btn"
+        style="display: none"
+        onclick="startAdventure()">
+        Yay! Let's Go!
+      </button>
+    </div>
+
+    <script>
+      function checkAnswer(answer) {
+  const result = document.getElementById("result");
+  const nextBtn = document.getElementById("nextBtn");
+
+  result.innerHTML = "";
+  result.classList.remove("fade-in", "bounce", "sparkle");
+
+  setTimeout(() => {
+    if (answer === "right") {
+      result.innerHTML = `
+        <p>🎉 Yay! You're right, Pranith! 🥳</p>
+        <div style="position: relative; display: inline-block;">
+          <img 
+            src="https://media-hosting.imagekit.io/4ffa4c91165c4b0a/download.jpg?Expires=1839667247&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=fUAeEZN704-nNV5Uxj6xoays3o3PRIYrdblZh0HI-W3qJngoJraueuGtTT-fuk4qbMgWgTkxjo61MpNV00eZWsCCvw-EWChSUvdV-YNAVgNc7PKq3BvOMaz~vxhfeEpQJdKiKMCB2LO1HA77Q9VISUUIsOr~gCGuKhHrfq8G5ZkyMu5Cq5HD9AxK42-Sa4GyZZEqIdFvm6tr51Y~0xYrEFE3cHGh956~yO1JKHwUA4~KSsBDdfpOnGNDIuY~ghpkCgg6lG9BBF-90XUhcEC8rqcR7Xt-t9OMyiKGSvbXayfmyoZwqgWyc80sYLOkjRJ1N1368a~sGWKQgnsytCnsCg__" 
+            alt="Correct Answer" 
+            class="result-image bounce sparkle" 
+            style="max-width: 300px; margin-top: 15px;" />
+        </div>
+      `;
+
+confetti({
+  particleCount: 100,
+  spread: 70,
+  origin: { y: 0.6 },
+});
+
+      nextBtn.style.display = "inline-block";
+      createStarBurst();
+    } else {
+      result.innerHTML = `
+        <p>😅 Oops! Try again, buddy!</p>
+        <div style="position: relative; display: inline-block;">
+          <img 
+            src="https://media-hosting.imagekit.io/591af6d09cbb43ff/download.png?Expires=1839668663&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=XxXFSRaGzCdkqaIOktplDfxFA8gddMkUeYH6lIcWlJHcL9oq--EfsIeGMJf4w~VvbKk1fpfzVb5hzvb161~llQCwiAPiBY4BwsMNJ2~AkT0vTmLMjdxokZi8fFhnOID-P6-R5qbKyNTi2XI374eyT8ur2nC1oZUKyvCN~jQa4jbO7UBXbA~mpafnifOvUum7ZrgRCPg8R70aZD1S7zO1BXEDT~Xl-IrMYgzBJu70bRw84CIEIfY8W1KodNfpbJEn76BS0AtIqRH9Kk2yG31wcSuui2fQ2AEC-tGWZcaj0p5pOuVxaXaBbJCc66y~4zUjVNVkhJqhWpNanxDCxZVuWw__" 
+            alt="Wrong Answer" 
+            class="result-image bounce" 
+            style="max-width: 300px; margin-top: 15px;" />
+        </div>
+      `;
+      nextBtn.style.display = "none";
+    }
+    result.classList.add("fade-in");
+  }, 100);
+}
+
+
+      function createStarBurst() {
+        for (let i = 0; i < 12; i++) {
+          const star = document.createElement("div");
+          star.className = "burst-star";
+          star.textContent = "⭐";
+          star.style.left = "50%";
+          star.style.top = "50%";
+          star.style.transform += ` rotate(${Math.random() * 360}deg)`;
+          document.body.appendChild(star);
+          setTimeout(() => star.remove(), 1000);
+        }
+      }
+
+      function startAdventure() {
+        window.location.href = "scene2.html";
+      }
+    </script>
+  </body>
+</html>

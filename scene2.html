@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Balloon Hunt</title>
+    <style>
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: url("https://www.transparenttextures.com/patterns/stardust.png");
+        opacity: 0.1;
+        z-index: -1;
+        animation: twinkle 8s infinite alternate;
+      }
+
+      @keyframes twinkle {
+        0% {
+          transform: scale(1);
+          opacity: 0.1;
+        }
+        100% {
+          transform: scale(1.05);
+          opacity: 0.2;
+        }
+      }
+
+      body {
+        font-family: "Fredoka", sans-serif;
+        background: linear-gradient(to right, #fefcea, #f1daff);
+        text-align: center;
+        padding: 40px;
+      }
+
+      .clue-container {
+        max-width: 700px;
+        margin: auto;
+        background: rgba(255, 255, 255, 0.3);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(8px);
+      }
+
+      .balloon-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 80px);
+        gap: 20px;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .balloon {
+        font-size: 2rem;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      .balloon:hover {
+        transform: scale(1.2);
+      }
+
+      #result {
+        margin-top: 30px;
+        font-size: 1.2rem;
+      }
+      @keyframes floaty {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(3deg);
+        }
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+      }
+
+      .balloon {
+        animation: floaty 3s ease-in-out infinite;
+      }
+      body {
+        background: linear-gradient(-45deg, #fefcea, #f1daff, #ffe0f0, #daf5ff);
+        background-size: 400% 400%;
+        animation: gradientMove 20s ease infinite;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clue-container">
+      <h2>🎈 Find the balloon with a secret! 🎈</h2>
+      <p>Only one balloon holds the next clue. Choose wisely!</p>
+      <div class="balloon-grid">
+        <!-- Balloons will be added by JS -->
+      </div>
+      <div id="result"></div>
+    </div>
+    <script>
+      const balloonGrid = document.querySelector(".balloon-grid");
+      const resultBox = document.getElementById("result");
+
+      // Pick one random correct balloon
+      const correctIndex = Math.floor(Math.random() * 12);
+
+      // Add 12 balloons
+      for (let i = 0; i < 12; i++) {
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.textContent = "🎈";
+        balloon.addEventListener("click", () => {
+          if (i === correctIndex) {
+            resultBox.innerHTML = `
+        <p>🎉 Yay! You found the secret balloon!</p>
+        <a href="clue2.html"><button> Last task </button></a>
+      `;
+          } else {
+            resultBox.innerHTML = `<p>Oops! That balloon was empty. Try another one!</p>`;
+          }
+        });
+        balloonGrid.appendChild(balloon);
+      }
+      setInterval(() => {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ["#ff6ec7", "#ffd700", "#00ffff", "#ff69b4"],
+        });
+      }, 4000);
+    </script>
+  </body>
+</html>
