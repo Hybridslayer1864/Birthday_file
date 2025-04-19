@@ -57,6 +57,7 @@
         font-size: 2rem;
         cursor: pointer;
         transition: transform 0.2s ease;
+        animation: floaty 3s ease-in-out infinite;
       }
 
       .balloon:hover {
@@ -67,6 +68,7 @@
         margin-top: 30px;
         font-size: 1.2rem;
       }
+
       @keyframes floaty {
         0% {
           transform: translateY(0) rotate(0deg);
@@ -79,9 +81,6 @@
         }
       }
 
-      .balloon {
-        animation: floaty 3s ease-in-out infinite;
-      }
       body {
         background: linear-gradient(-45deg, #fefcea, #f1daff, #ffe0f0, #daf5ff);
         background-size: 400% 400%;
@@ -125,22 +124,26 @@
         balloon.addEventListener("click", () => {
           if (i === correctIndex) {
             resultBox.innerHTML = `
-        <p>🎉 Yay! You found the secret balloon!</p>
-        <a href="clue2.html"><button> Last task </button></a>
-      `;
+              <p>🎉 Yay! You found the secret balloon!</p>
+              <button onclick="window.location.href='kkk.html'">Last task</button>
+            `;
           } else {
             resultBox.innerHTML = `<p>Oops! That balloon was empty. Try another one!</p>`;
           }
         });
         balloonGrid.appendChild(balloon);
       }
+
+      // Optional confetti (can comment this if not using a confetti library)
       setInterval(() => {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ["#ff6ec7", "#ffd700", "#00ffff", "#ff69b4"],
-        });
+        if (typeof confetti === "function") {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ["#ff6ec7", "#ffd700", "#00ffff", "#ff69b4"],
+          });
+        }
       }, 4000);
     </script>
   </body>
